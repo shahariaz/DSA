@@ -1,5 +1,4 @@
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h> 
 using namespace std;
 
 void print (vector<int> v){
@@ -23,4 +22,10 @@ int main(){
     print(v);
     print(v2); print(v3); print(v4); print(v5);
     /// for clearing full verctor => v.clear();
+
+    vector<int> :: iterator it;
+    for (it = v.begin(); it !=v.end(); it++){
+        cout << *it << " "; 
+        cout << *it << " ";
+    }
 }
