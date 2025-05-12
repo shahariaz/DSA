@@ -36,6 +36,12 @@ int main(){
   cin>>devider;
   cout<<"Enter the dividend: ";
   cin>>dividend;
-  int quotient = findQuotient(devider, dividend);
+  int quotient = findQuotient(abs(devider), abs(dividend));
+  if((devider<0 && dividend>0) || (devider>0 && dividend<0)){
+    cout<<-quotient<<endl;
+  }
+  else{
+    cout<<quotient<<endl;
+  }
   cout<<quotient<<endl;
 }
