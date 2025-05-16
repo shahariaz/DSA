@@ -11,4 +11,4 @@ int main(){
   }
   for(auto u :k) cout<< u<<endl;
 
-}
+} 
