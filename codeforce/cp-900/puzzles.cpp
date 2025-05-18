@@ -1,45 +1,26 @@
-#include<bits/stdc++.h>
+
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
-int main(){
-  int student,p;
-  cin>>student>>p;
-
-  vector<int> shape(p);
-  for (int i = 0; i < p; i++)
-  {
-    cin>>shape[i];
-  }
-  sort(shape.begin(),shape.end());
-  // int dist = shape[student-1]-shape[0];
-  // if(dist==1){
-  //   cout<<0<<endl;
-  // }else{
-  //   cout<<abs(dist)<<endl;
-  // }
-  int diff =0;
-  int count=0;
-  for (int i = 0; i < p; i++)
-  {
-    for (int j = 0; j< (shape[p-1]-shape[0]); j++)
+int main()
+{
+    int n, m, f[1000];
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i)
     {
-      if(shape[i+1] -shape[i] == i ){
-        diff++;
-      }
-      else if(diff  == 4)
-      {
-        count = i;
-        break;
-
-      }{
-        diff =0;
-      }
-
+        cin >> f[i];
     }
-    if(diff ==4){
-      cout<<count<<endl;
+    sort(f, f + m);
+    int least = f[n-1] - f[0];
+    for (int i = 1; i <= m - n; ++i)
+    {
+        if (f[i+n-1] - f[i] < least)
+        {
+            least = f[i+n-1] - f[i];
+        }
     }
-  }
-  
-  
+    cout << least << endl;
+    return 0;
 }
