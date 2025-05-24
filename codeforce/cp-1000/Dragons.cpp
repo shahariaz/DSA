@@ -5,21 +5,24 @@ using namespace std;
 int main(){
   optimize();
   int s,n; cin>>s>>n;
-  bool ok =1;
-  while (n--)
-  {
-    int a,b; cin>>a>>b;
-    if(a>s && b>s){
-      ok=0;
-      break;
-    }
-    else if(a<s && a>b){
-      s+=b;
-    }else{
-      s+=b;
-    } 
+  bool isOk = 0;
+  pair<int,int> a[1000];
+  for(int i =0;i<n;i++){
+    cin>>a[i].first>>a[i].second;
   }
-  cout<<(ok==0 ? "NO\n":"YES\n");
+  sort(a,a+n);
 
-  
+  for(int i =0;i<n;i++){
+    if(s<=a[i].first){
+      isOk =1;
+      break;
+    }else{
+      s+= a[i].second;
+    }
+  }
+  if(isOk ==1){
+    cout<<"NO";
+  }else{
+    cout<<"YES";
+  }
 }
