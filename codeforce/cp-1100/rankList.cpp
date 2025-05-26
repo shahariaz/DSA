@@ -17,9 +17,10 @@ int main(){
     cin>>rank[i].first>>rank[i].second;
   }
   sort(rank.begin(),rank.end(),cmp);
-  int ans =0;
-  for(auto u:rank){
-    if(u==rank[k-1]) ans++;
-  }
-  cout<<ans<<endl;
+  // int ans =0;
+  // for(auto u:rank){
+  //   if(u==rank[k-1]) ans++;
+  // }
+  // cout<<ans<<endl;
+  for(auto u:rank) cout<<u.first<<" "<<u.second<<endl;
 }

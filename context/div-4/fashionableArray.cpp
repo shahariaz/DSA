@@ -16,7 +16,7 @@ int main(){
      sort(arr.begin(),arr.end());
      while (i<j)
      {
-      if((arr[i]+arr[j])%2 ==0){
+      if((arr[i]+arr[j])%2 ==0){ 
         break;
       }else{
         count++;
