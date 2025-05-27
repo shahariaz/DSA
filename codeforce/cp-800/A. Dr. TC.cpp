@@ -14,7 +14,7 @@ int main(){
     if(zero==0 && one>1){
       cout<<one<<endl;
     }else{
-      cout<<(zero+(one*zero))<<endl;
+      cout<<(zero+(one*(n-zero)))<<endl;
     }
 
   }
