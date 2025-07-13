@@ -79,6 +79,33 @@ public:
       prev->next = NULL;
     }
   }
+  void delete_pos(int pos ){
+    Node* curr;
+    Node* prev;
+    curr = head;
+    if(head == NULL) return;
+    if( pos==1 && head->next ==NULL) {
+      delete head;
+      head = NULL;
+    }else if(pos ==1 && head->next != NULL){
+      Node* temp = head;
+      head = head->next;
+      delete temp;
+      
+    }
+    else{
+      while (pos != 1)
+    {
+      prev = curr;
+      curr = curr->next;
+      pos--;
+    }
+    prev->next = curr->next;
+    delete curr;
+    }
+    
+    
+  }
 
   void display() {
     Node* temp = head;
@@ -96,8 +123,10 @@ int main() {
   l.push_back(20);
   l.push_front(5);
   l.insert(15, 2);
-  l.pop_front();
-  l.pop_back();
+  l.delete_pos(1);
+  // l.pop_front();
+  // l.pop_back();
   l.display();
   return 0;
 }
+// 5 10 15 20
