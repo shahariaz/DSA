@@ -6,7 +6,7 @@ class Node{
   int val;
   Node* left,*right;
   Node(int val){
-    val = val;
+    this->val = val;
     left = right = NULL;
   }
 
@@ -54,4 +54,13 @@ Node * BinaryTree(){
 int main(){
   cout<<"Enter the root Node : ";
   Node* root = BinaryTree();
+
+  cout<<"Pre Order: ";
+  PreOrder(root);
+  cout<<endl;
+  cout<<"In Order: ";
+  InOrder(root);
+   cout<<endl;
+  cout<<"Post Order: ";
+  PostOrder(root);
 }

@@ -128,5 +128,7 @@ int main() {
   // l.pop_back();
   l.display();
   return 0;
+  list<int> a;
+  
 }
 // 5 10 15 20
