@@ -11,7 +11,24 @@ class Node{
   }
 };
 
+void Print(Node* root){
 
+queue<Node*> q;
+q.push(root);
+while (!q.empty())
+{
+  Node* val = q.front();
+  q.pop();
+  cout<<val->val<<" ";
+  if(val->left != NULL){
+    q.push(val->left);
+  }
+  if(val->right != NULL){
+    q.push(val->right);
+  }
+}
+
+};
 
 
 int main(){
@@ -39,5 +56,6 @@ int main(){
       q.push(temp->right);
     }
   }
+  Print(root);
   
 }

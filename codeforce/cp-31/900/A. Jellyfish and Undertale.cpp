@@ -6,14 +6,14 @@ int main(){
   int t;
   cin>>t;
   while(t--){
-    int a,b,n;
+    long long a,b,n;
     cin>>a>>b>>n;
-    int arr[n];
+    long long arr[n];
     for(auto &u:arr) cin>>u;
-    int result=0;
+    long long result=0;
     for(int i =0;i<n;i++){
-      result+= min(arr[i],a);
+      result+= min(arr[i],a-1);
     }
-    cout<<result+abs(b-1)<<endl;
+    cout<<result+b<<endl;
   }
 }
