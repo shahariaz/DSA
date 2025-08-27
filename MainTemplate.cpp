@@ -138,112 +138,37 @@ ull s3(ll n) {
 }
 
 // ---------- DIGIT SUM CALCULATOR ----------
-class DigitSumCalculator {
-private:
-    struct PowerOfTenTable {
-        uint64_t values[20];
-        
-        PowerOfTenTable() {
-            values[0] = 1;
-            for (int i = 1; i < 20; i++) {
-                values[i] = values[i-1] * 10;
-            }
-        }
-    };
-
-    // Calculate sum of digits for numbers from 1 to n
-    static uint64_t calculateCumulativeDigitSum(uint64_t n) {
-        if (n == 0) return 0;
-        
-        uint64_t total = 0;
-        uint64_t multiplier = 1;
-        
-        while (multiplier <= n) {
-            uint64_t higherPart = n / (multiplier * 10);
-            uint64_t currentDigit = (n / multiplier) % 10;
-            uint64_t lowerPart = n % multiplier;
-            
-            // Add contribution from numbers before current digit position
-            total += higherPart * 45 * multiplier;
-            
-            // Add contribution from current digit
-            total += (currentDigit * (currentDigit - 1) / 2) * multiplier;
-            
-            // Add contribution from rem part
-            total += currentDigit * (lowerPart + 1);
-            
-            multiplier *= 10;
-        }
-        
-        return total;
-    }
-
-    // Helper to get digit sum for a range [start, end]
-    static uint64_t getRangeDigitSum(uint64_t start, uint64_t end) {
-        return calculateCumulativeDigitSum(end) - calculateCumulativeDigitSum(start - 1);
-    }
-
-public:
-    static uint64_t findPos(uint64_t tar, const PowerOfTenTable& powT) {
-        uint64_t result = 0;
-        uint64_t rem = tar;
-        int digln = 1;
-        
-        while (digln < 19) {
-            uint64_t numCunt = 9 * powT.values[digln - 1];
-            __uint128_t digitCnt = (__uint128_t)numCunt * digln;
-            
-            if (rem >= digitCnt) {
-                // Process complete block of numbers with this digit length
-                uint64_t blkS = powT.values[digln - 1];
-                uint64_t blkE = powT.values[digln] - 1;
-                result += getRangeDigitSum(blkS, blkE);
-                rem -= digitCnt;
-                digln++;
-            } else {
-                // Process partial block
-                uint64_t compNum = rem / digln;
-                uint64_t partDig = rem % digln;
-                uint64_t sNum = powT.values[digln - 1];
-                
-                if (compNum > 0) {
-                    result += getRangeDigitSum(sNum, sNum + compNum - 1);
-                }
-                
-                if (partDig > 0) {
-                    uint64_t part = sNum + compNum;
-                    string numberStr = to_string(part);
-                    for (uint64_t i = 0; i < partDig; i++) {
-                        result += (numberStr[i] - '0');
-                    }
-                }
-                break;
-            }
-        }
-        
-        return result;
-    }
-
-    static void porcess() {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
-        int queryCnt;
-        if (!(cin >> queryCnt)) return;
-        
-        PowerOfTenTable powT;
-        
-        for (int i = 0; i < queryCnt; i++) {
-            uint64_t position;
-            cin >> position;
-            cout << findPos(position, powT) << "\n";
-        }
-    }
-};
 
 // ---------- SOLUTION ----------
+ll calcSum(const vector<ll>& srtdArr, int i, bool take) {
+    if (i >= srtdArr.size()) return 0;
+    
+    if (take) {
+        return srtdArr[i] + calcSum(srtdArr, i + 1, false);
+    } else {
+        return calcSum(srtdArr, i + 1, true);
+    }
+}
+
 void solve() {
-    DigitSumCalculator::porcess();
+    int n,k;
+    cin>>n>>k;
+    string s;
+    cin>>s;
+    int count =0;
+    int maxi = INT_MIN;
+    for(int i =0;i<s.size();i++){
+        if(s[i]=='B') count++;
+        else{
+            maxi = max(maxi,count);
+            count =0;
+        }
+    }
+    if(maxi>=k) cout<<0<<endl;
+    else{
+        cout<<(k-maxi)<<endl;
+    }
+    
 }
 
 // ---------- MAIN ----------
