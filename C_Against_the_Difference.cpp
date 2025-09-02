@@ -155,25 +155,56 @@ struct Seg {
         return r < o.r;
     }
 };
-long long getModS(const string &N, long long r) {
-    long long res = 0;
-    for (char c : N) {
-        res = (res * 10 + (c - '0')) % r;
-    }
-    return res;
-}
-void solve() {
-  
-}
 
+void solve() {
+     int n;
+        cin >> n;
+        vector<int> a(n);
+        for (int i = 0; i < n; ++i) cin >> a[i];
+        
+        vector<vector<int>> pos(n + 1);
+        for (int i = 0; i < n; ++i) {
+            if (a[i] <= n) pos[a[i]].push_back(i);
+        }
+        
+        vector<vector<pair<int, int>>> rig(n + 1);
+        for (int v = 1; v <= n; ++v) {
+            const auto& p = pos[v];
+            int c = p.size();
+            if (c < v) continue;
+            
+            for (int i = 0; i <= c - v; ++i) {
+                int l = p[i], r = p[i + v - 1];
+                rig[r].emplace_back(l, v);
+            }
+        }
+        
+        vector<int> dp(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            if (i > 0) dp[i] = max(dp[i], dp[i - 1]);
+            for (auto [l, w] : rig[i]) {
+                dp[i] = max(dp[i], (l > 0 ? dp[l - 1] : 0) + w);
+            }
+            if (i < n) dp[i + 1] = dp[i];
+        }
+        
+        cout << dp[n] << "\n"; 
+}
+struct Evn {
+    int r, l, w;
+    bool operator<(const Evn& o) const {
+        return r > o.r;
+    }
+};
 // ---------- MAIN ----------
 int main() {
     fastio();
     int t; 
+   
     cin>>t;
     while (t--) {
       solve();
-    
+      
     }
     return 0;
 }

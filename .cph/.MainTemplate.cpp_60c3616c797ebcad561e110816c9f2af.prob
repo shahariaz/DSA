@@ -1,1 +1,1 @@
-{"name":"Local: MainTemplate","url":"d:\\codes\\A_DSA\\MainTemplate.cpp","tests":[{"id":1756212389166,"input":"1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\codes\\A_DSA\\MainTemplate.cpp","group":"local","local":true}
+{"name":"Local: MainTemplate","url":"d:\\codes\\A_DSA\\MainTemplate.cpp","tests":[{"id":1756212389166,"input":"2\n193 17\n2441139 505","output":"Case 1: 68 \nCase 2: 66262"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\codes\\A_DSA\\MainTemplate.cpp","group":"local","local":true}

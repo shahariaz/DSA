@@ -149,31 +149,55 @@ ll calcSum(const vector<ll>& srtdArr, int i, bool take) {
         return calcSum(srtdArr, i + 1, true);
     }
 }
-struct Seg {
-    int l, r, w;
-    bool operator<(const Seg& o) const {
-        return r < o.r;
-    }
-};
-long long getModS(const string &N, long long r) {
-    long long res = 0;
-    for (char c : N) {
-        res = (res * 10 + (c - '0')) % r;
-    }
-    return res;
-}
+
 void solve() {
-  
+        
 }
 
 // ---------- MAIN ----------
 int main() {
     fastio();
     int t; 
+   
     cin>>t;
     while (t--) {
-      solve();
-    
+        solve();
+         int n, k;
+        string s;
+        cin >> n >> k >> s;
+        
+      
+        int maxi = 0;
+        int curr = 0;
+        for (char c : s) {
+            curr = (c == '1') ? curr + 1 : 0;
+            maxi = max(maxi, curr);
+        }
+        
+        if (maxi >= k) {
+            cout << "NO\n";
+            continue;
+        }
+        
+        cout << "YES\n";      
+        vector<int> indi(n);
+        for (int i = 0; i < n; i++) indi[i] = i;
+      
+        stable_sort(indi.begin(), indi.end(), [&](int a, int b) {
+            return s[a] < s[b];
+        });
+        
+        vector<int> preSum(n);
+        int value = n;
+        for (int index : indi) {
+            preSum[index] = value--;
+        }
+        
+        for (int i = 0; i < n; i++) {
+            if (i > 0) cout << " ";
+            cout << preSum[i];
+        }
+        cout << "\n";
     }
     return 0;
 }
